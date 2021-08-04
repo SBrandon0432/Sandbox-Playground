@@ -1,11 +1,12 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './indexS.scss';
+import UserCard from './components/UserCards/UserCards';
 
 ReactDOM.render(
   <StrictMode>
     <div className="App">
-        IM working!
+      < UserCard />
     </div>
   </StrictMode>,
 
