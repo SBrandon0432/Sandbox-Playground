@@ -19,7 +19,7 @@ const UserCards = (props: any)  => {
   }, [])
 
     return (
-      <div>
+      <div className="Users-map">
         {
           users.map( (person) => {
             return (
