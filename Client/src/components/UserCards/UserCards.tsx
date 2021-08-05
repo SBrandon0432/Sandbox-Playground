@@ -1,55 +1,37 @@
 import React, { useEffect, useState } from "react";
-import  $ from "jquery";
 import "./UserCardsS.scss";
 import User from '../User/User';
 
 
-const UserCards = ()  => {
+const UserCards = (props: any)  => {
+
 
   const [users, changeUsers] = useState([]);
 
-  const getUsers = () => {
-    // $.get({
-    //   method: "Get",
-    //   url: "https://api.hatchways.io/assessment/students",
-    //   success: (data) => {
-    //     return data;
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-
-    // })
-    // .done(() => {
-    //   console.log('done')
-    // })
-  }
-
   useEffect( () => {
-
-    async function test () {
+    async function getRequest () {
       const response = await fetch('https://api.hatchways.io/assessment/students');
       const json = await response.json();
-      changeUsers(json);
+      changeUsers(json.students);
+      console.log(json.students)
     }
-    test();
+    getRequest()
 
-  }, []);
+  }, [])
 
-
-  console.log(users);
-
-  return (
-    <div className = "User-Cards" >
-      <div className="User-Card-Single-in-UserCard">
-
+    return (
+      <div>
+        {
+          users.map( (person) => {
+            return (
+              <User student={person} />
+            )
+          })
+        }
       </div>
-    </div>
-  );
-
+    );
 
 }
-
 
 export default UserCards;
 

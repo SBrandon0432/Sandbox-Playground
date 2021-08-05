@@ -10,7 +10,9 @@ const User = (props: any ) => {
 
   return (
     <div className = "User">
-
+      <h1>
+      test
+      </h1>
     </div>
   );
 
