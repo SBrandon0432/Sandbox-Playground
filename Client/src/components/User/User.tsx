@@ -8,6 +8,7 @@ const User = (props: any ) => {
   //other stuffs
   console.log(props.student)
   const studentPicture = props.student.pic;
+  const studentName = props.student.firstName;
   const studentEmail = props.student.email;
   const studentCompany = props.student.company;
   const studentSkill = props.student.skill
@@ -24,10 +25,11 @@ const User = (props: any ) => {
   return (
     <div className = "User">
       <img className="Student-Picture" src = {studentPicture} />
-      <div className="Student-Email" > { studentEmail } </div>
-      <div className="Student-Company" > { studentCompany } </div>
-      <div className="Student-Skill" > { studentSkill } </div>
-      <div className="Student-Average"> {studentAverage()}%  </div>
+      <h3 className="Student-Name" > { studentName } </h3>
+      <div className="Student-Email" > Email: { studentEmail } </div>
+      <div className="Student-Company" > Company: { studentCompany } </div>
+      <div className="Student-Skill" > Skill: { studentSkill } </div>
+      <div className="Student-Average">Average: {studentAverage()}%  </div>
     </div>
   );
 
