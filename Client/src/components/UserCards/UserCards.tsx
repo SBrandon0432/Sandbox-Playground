@@ -13,7 +13,6 @@ const UserCards = (props: any)  => {
       const response = await fetch('https://api.hatchways.io/assessment/students');
       const json = await response.json();
       changeUsers(json.students);
-      console.log(json.students)
     }
     getRequest()
 
