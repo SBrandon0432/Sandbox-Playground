@@ -26,10 +26,12 @@ const User = (props: any ) => {
   return (
     <div className = "User">
       <img className="Student-Picture" src = {studentPicture} />
+      <div className="test-wrapper">
       <div className= "Student-Name" > { studentName } </div>
-      <div className="Student-Email" > Email: { studentEmail } </div>
-      <div className="Student-Skill" > Skill: { studentSkill } </div>
-      <div className="Student-Average"> Average: {studentAverage()}%  </div>
+        <div className="Student-Email" > Email: { studentEmail } </div>
+        <div className="Student-Skill" > Skill: { studentSkill } </div>
+        <div className="Student-Average"> Average: {studentAverage()}%  </div>
+      </div>
     </div>
   );
 

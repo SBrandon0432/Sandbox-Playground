@@ -1,22 +1,27 @@
 .User{
   background-color: whitesmoke;
-  border: 4px solid lightgray;
+  border: 1px solid lightgray;
   display: flex;
+  padding-right: 9rem;
 
   .Student-Picture {
 
     border: 2px solid lightgray;
     border-radius: 50%;
-    width: 5%;
+    width: 37%;
     height: auto;
     margin: 1px;
 
   }
 
-  .Student-Name {
-    font-size: 40px;
+  .test-wrapper{
+    display: flex;
+    flex-direction: column;
 
-  }
+    .Student-Name {
+      font-size: 40px;
+
+    }
   .Student-Email {
 
   }
@@ -29,6 +34,7 @@
 
 
   }
+}
 
 
 }
