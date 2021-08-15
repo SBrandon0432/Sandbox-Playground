@@ -17,13 +17,12 @@ const UserCards = (props: any)  => {
     getRequest()
 
   }, [])
-
     return (
       <div className="Users-map">
         {
-          users.map( (person) => {
+          users.map( (person, index) => {
             return (
-              <User student={person} />
+              <User student={person} key={index} />
             )
           })
         }
