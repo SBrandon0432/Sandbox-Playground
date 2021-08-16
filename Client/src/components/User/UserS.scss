@@ -1,38 +1,39 @@
-.User{
-  background-color: whitesmoke;
-  border: 1px solid lightgray;
-  padding-right: 9rem;
+.User {
+	background-color: whitesmoke;
+	border: 1px solid lightgray;
+	// padding-right: 9rem;
+	position: relative;
 
-  .Student-Picture {
-    display: flex;
-    float: left;
-    border: 2px solid lightgray;
-    border-radius: 50%;
-    width: 36%;
-    height: auto;
-    margin: 1px;
+	.Student-Picture {
+		display: flex;
+		float: left;
+		border: 2px solid lightgray;
+		border-radius: 50%;
+		margin: 5px;
+	}
 
-  }
+	.User-Info {
+		display: flex;
+		flex-direction: column;
 
-  .User-Info{
-    display: flex;
-    flex-direction: column;
+		.Student-Name {
+			font-size: 40px;
+		}
+	} //user info
 
-    .Student-Name {
-      font-size: 40px;
-    }
+	.More-Grades-Button {
+		border: 2px solid yellow;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
 
-  }
-  .More-Grades{
-    border: 2px solid yellow;
-  }
+	.grades {
+		padding: 5px;
+	}
 
-  .grades{
-    text-align: center;
-    border: 2px solid red;
-    margin-left: 3%;
-  }
-
-
-
+	.More-Info {
+		color: gray;
+		padding: 10px;
+	}
 }
