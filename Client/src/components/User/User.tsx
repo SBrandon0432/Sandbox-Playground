@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
+import { Button } from "react-bootstrap";
 import './UserS.scss';
-
+import MoreGrades from "../MoreGrades/MoreGrades";
 const User = (props: any ) => {
 
 
@@ -56,12 +57,33 @@ const User = (props: any ) => {
 
 
     );
-  } else if (moreInfo) {
+  }
+
+  else if (moreInfo) {
+    return (
+
+      <div className = "User">
+      <img className="Student-Picture" src = {studentPicture} />
+      <div className="User-Info">
+        <div className= "Student-Name" > { studentName } </div>
+        <div className="Student-Email" > Email: { studentEmail } </div>
+        <div className="Student-Skill" > Skill: { studentSkill } </div>
+        <div className="Student-Average"> Average: {studentAverage()}%  </div>
+      </div>
+        <div className="More-Grades">
+          <button onClick={(e)=>{chMoreInfo(false)}} >-</button>
+        </div>
+
+        <div className="grades">
+         < MoreGrades grades={studentGrades}/>
+        </div>
+
+    </div>
+    )
 
   }  else {
 
     return (
-
       <div className = "User">
         <img className="Student-Picture" src = {studentPicture} />
         <div className="User-Info">
@@ -77,8 +99,10 @@ const User = (props: any ) => {
           <div className="Student-Skill" > Skill: { studentSkill } </div>
           <div className="Student-Average"> Average: {studentAverage()}%  </div>
         </div>
+          <div className="More-Grades">
+            <button onClick={(e)=>{chMoreInfo(true)} }>+</button>
+          </div>
       </div>
-
     );
   }
 

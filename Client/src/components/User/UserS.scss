@@ -1,14 +1,14 @@
 .User{
   background-color: whitesmoke;
   border: 1px solid lightgray;
-  display: flex;
   padding-right: 9rem;
 
   .Student-Picture {
-
+    display: flex;
+    float: left;
     border: 2px solid lightgray;
     border-radius: 50%;
-    width: 37%;
+    width: 36%;
     height: auto;
     margin: 1px;
 
@@ -20,23 +20,19 @@
 
     .Student-Name {
       font-size: 40px;
-
     }
 
-  .Student-Email {
-
+  }
+  .More-Grades{
+    border: 2px solid yellow;
   }
 
-  .Student-Skill {
-
+  .grades{
+    text-align: center;
+    border: 2px solid red;
+    margin-left: 3%;
   }
 
-  .Student-Average {
-
-
-  }
-
-}
 
 
 }
