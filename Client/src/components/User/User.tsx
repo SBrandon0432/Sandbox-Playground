@@ -56,8 +56,6 @@ const User = ({ student }: Props ) => {
           )}
         </div>
       </div>
-
-
     </div>
   );
 }
