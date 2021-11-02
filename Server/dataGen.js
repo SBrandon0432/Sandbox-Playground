@@ -8,7 +8,7 @@ const rating = Math.floor(Math.random() * 100) / 10;
 const picture = faker.image.sports();
 const about = faker.lorem.paragraph();
 
-const dataGen = ()  => {
+const test = ()  => {
   const result = [];
 
   for (let i =0; i < 100; i+=1) {
@@ -25,6 +25,8 @@ const dataGen = ()  => {
   }
   return result;
 }
+
+module.exports = test
 
 // movie name,
 // actors
