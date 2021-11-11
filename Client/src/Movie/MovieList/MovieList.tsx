@@ -15,11 +15,11 @@ interface IProps {
 
 interface Imovie {
   movie: IProps;
-  test: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setHandler: React.Dispatch<React.SetStateAction<number | undefined>>;
   index?: number;
 }
 
-const MovieList: React.FunctionComponent<Imovie>= ({movie, test, index}: Imovie) =>{
+const MovieList: React.FunctionComponent<Imovie>= ({movie, setHandler, index}: Imovie) =>{
 
   const {
     crew,
@@ -33,11 +33,12 @@ const MovieList: React.FunctionComponent<Imovie>= ({movie, test, index}: Imovie)
     year
   } = movie
 
-  console.log(movie, 'movie list');
+ console.log(movie, 'movie list');
 
   return (
-    <div onClick={ () => test(index) } >
+    <div >
       {title}
+      <button onClick={ () => setHandler(index) }>More Info</button>
     </div>
   )
 
