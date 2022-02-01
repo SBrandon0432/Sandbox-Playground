@@ -2,16 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MovieAppS.scss';
 import api from './key';
 import MovieList from '../MovieList/MovieList';
-import { isModifier } from 'typescript';
 
-// interface IMovies {
-//  movies?: [] | {};
-
-// }
-
-// interface Props {
-//   movies: IMovies;
-// }
 
 interface IMovie {
   crew?: string;
@@ -26,22 +17,55 @@ interface IMovie {
   year?: string;
 }
 
+const useMovies = () => {
+  const [movies, setMovies] = useState<IMovie[]>([]);
+
+  useEffect( () => {
+
+    async function getRequestTo100Movies() {
+      const response = await fetch(`https://imdb-api.com/en/API/MostPopularMovies/${api}`);
+      const json = await response.json();
+      console.log(json.items)
+      setMovies(json.items);
+    }
+    getRequestTo100Movies();
+
+  }, [])
+
+  return movies;
+}
+
+const useTrailer = (movieId: number, loadTrailer: boolean) => {
+  const [trailerUrl, setTrailerUrl] = useState<any>({});
+  const [trailerLoaded, setTrailerLoaded] = useState<boolean>(false);
+
+  useEffect( ()=> {
+    async function getRequestTrailer() {
+      const response = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${api}/tt1375666`); // random movie
+      const json = await response.json();
+      setTrailerUrl(json);
+      setTrailerLoaded(true);
+    }
+    if (loadTrailer && !trailerLoaded) {
+      getRequestTrailer();
+    }
+
+  },[movieId, loadTrailer, trailerLoaded]);
+
+  useEffect(() => {
+    setTrailerLoaded(false);
+  }, [movieId])
+
+  return trailerUrl;
+
+}
 
 
 const SandBox: React.FC = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
-  const [selectedMovie, setSelectedMovie] = useState<number>(-1)
-
-
-  useEffect( () => {
-    async function getRequest() {
-      const response = await fetch(`https://imdb-api.com/en/API/MostPopularMovies/${api}`);
-      const json = await response.json();
-      setMovies(json.items);
-    }
-    getRequest();
-
-  }, [])
+  const movies = useMovies();
+  const [selectedMovie, setSelectedMovie] = useState<number>(-1);
+  const [showTrailer, setShowTrailer] = useState<boolean>(false);
+  const trailerUrl = useTrailer(0, showTrailer);
 
   const {
     crew,
@@ -53,18 +77,8 @@ const SandBox: React.FC = () => {
     rank,
     title,
     year
-  } = selectedMovie>=0 ? movies[selectedMovie]: {
-    crew:null,
-    fullTitle:null,
-    id:null,
-    imDbRating:null,
-    imDbRatingCount:null,
-    image:'null',
-    rank:null,
-    title:null,
-    year:null};
-
-
+  } = selectedMovie>=0 ? movies[selectedMovie]: {} as IMovie;
+//change
   return (
 
     <div className='MovieApp' style={{ display: "flex" }}>
@@ -75,7 +89,7 @@ const SandBox: React.FC = () => {
             movie={item}
             key={index}
             index={index}
-            setHandler={setSelectedMovie} />
+            setHandler = {setSelectedMovie} />
           })
         }
       </div>
@@ -85,19 +99,25 @@ const SandBox: React.FC = () => {
           <div className='moreInfo' style={{display: "flex", flexDirection: "column" }}>
 
             <h3 className='title'> {title} </h3>
-            <img src={image} width='30%' height='auto'/>
+            <img src={image} width='120rem' height='auto'/>
             <div className="rating">imDB rating: {imDbRating} </div>
             <div className='rank'>imDB Rank: {rank} </div>
             <div className='year'>Year Released: {year} </div>
             <div className='crew'>Cast/Crew: {crew} </div>
 
+            <button onClick={()=>setShowTrailer(!showTrailer)}> Click for Trailer </button>
+
+            {
+              showTrailer && (
+                <iframe src={trailerUrl.videoUrl}> </iframe>
+              )
+            }
 
           </div>
         )
       }
     </div>
   )
-
 
 }
 

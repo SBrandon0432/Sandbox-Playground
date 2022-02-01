@@ -1,4 +1,5 @@
 import React from 'react';
+import "./MovieListS.scss";
 
 interface IProps {
   crew?: string;
@@ -33,12 +34,12 @@ const MovieList: React.FunctionComponent<Imovie>= ({movie, setHandler, index}: I
     year
   } = movie
 
- console.log(movie, 'movie list');
+//  console.log(movie, 'movie list');
 
   return (
-    <div >
+    <div className="title">
       {title}
-      <button onClick={ () => setHandler(index) }>More Info</button>
+      <button type="button" onClick={ () => setHandler(index) }>More Info</button>
     </div>
   )
 
