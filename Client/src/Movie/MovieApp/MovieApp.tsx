@@ -78,11 +78,13 @@ const SandBox: React.FC = () => {
     title,
     year
   } = selectedMovie>=0 ? movies[selectedMovie]: {} as IMovie;
-//change
+
+
+
   return (
 
     <div className='MovieApp' style={{ display: "flex" }}>
-      <div style={{ display: "flex", flexDirection: "column" }} >
+      <div style={{ flexDirection: "column" }} >
         {
           movies.map((item: object, index: any) => {
             return < MovieList
