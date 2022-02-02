@@ -1,7 +1,6 @@
 # Apps
 
-to start site use
-`npm run Server` & `npm run build`
+- to start `npm run Server` & `npm run build`
 
 ## Movie List
 
