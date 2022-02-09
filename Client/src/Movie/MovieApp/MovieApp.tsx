@@ -35,13 +35,13 @@ const useMovies = () => {
   return movies;
 }
 
-const useTrailer = (movieId: number, loadTrailer: boolean) => {
+const useTrailer = (movieId: string | undefined, loadTrailer: boolean) => {
   const [trailerUrl, setTrailerUrl] = useState<any>({});
   const [trailerLoaded, setTrailerLoaded] = useState<boolean>(false);
 
   useEffect( ()=> {
     async function getRequestTrailer() {
-      const response = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${api}/tt1375666`); // random movie
+      const response = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${api}/${movieId}`); // random movie
       const json = await response.json();
       setTrailerUrl(json);
       setTrailerLoaded(true);
@@ -65,7 +65,10 @@ const SandBox: React.FC = () => {
   const movies = useMovies();
   const [selectedMovie, setSelectedMovie] = useState<number>(-1);
   const [showTrailer, setShowTrailer] = useState<boolean>(false);
-  const trailerUrl = useTrailer(0, showTrailer);
+  const [selectedMovieTrailer, setSelectedMovieTrailer] = useState<string | undefined>('')
+  const trailerUrl = useTrailer(selectedMovieTrailer, showTrailer);
+
+
 
   const {
     crew,
@@ -80,6 +83,7 @@ const SandBox: React.FC = () => {
   } = selectedMovie>=0 ? movies[selectedMovie]: {} as IMovie;
 
 
+  console.log(trailerUrl.videoId)
 
   return (
 
@@ -107,11 +111,15 @@ const SandBox: React.FC = () => {
             <div className='year'>Year Released: {year} </div>
             <div className='crew'>Cast/Crew: {crew} </div>
 
-            <button onClick={()=>setShowTrailer(!showTrailer)}> Click for Trailer </button>
+            <button onClick={ ()=>{
+              setSelectedMovieTrailer(id);
+              setShowTrailer(!showTrailer)
+
+            }}> Click for Trailer </button>
 
             {
               showTrailer && (
-                <iframe src={trailerUrl.videoUrl}> </iframe>
+                <iframe src={`https://www.youtube.com/embed/${trailerUrl.videoId}`}> </iframe>
               )
             }
 
@@ -124,3 +132,5 @@ const SandBox: React.FC = () => {
 }
 
 export default SandBox;
+
+

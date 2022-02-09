@@ -1,7 +1,6 @@
 # Apps
 
-to start site use
-`npm run Server` & `npm run build`
+- to start `npm run Server` & `npm run build`
 
 ## Movie List
 
@@ -14,3 +13,4 @@ This is an Movie list web app using the IMDB api's
 ## TODO board
 
 - Not yet implemented
+-
