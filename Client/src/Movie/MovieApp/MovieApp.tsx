@@ -44,6 +44,7 @@ const useTrailer = (movieId: number, loadTrailer: boolean) => {
       const response = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${api}/tt1375666`); // random movie
       const json = await response.json();
       setTrailerUrl(json);
+      console.log(json, 'json movie trailer')
       setTrailerLoaded(true);
     }
     if (loadTrailer && !trailerLoaded) {
@@ -67,6 +68,8 @@ const SandBox: React.FC = () => {
   const [showTrailer, setShowTrailer] = useState<boolean>(false);
   const trailerUrl = useTrailer(0, showTrailer);
 
+
+
   const {
     crew,
     fullTitle,
@@ -80,6 +83,7 @@ const SandBox: React.FC = () => {
   } = selectedMovie>=0 ? movies[selectedMovie]: {} as IMovie;
 
 
+  console.log(trailerUrl.videoId)
 
   return (
 
@@ -107,11 +111,11 @@ const SandBox: React.FC = () => {
             <div className='year'>Year Released: {year} </div>
             <div className='crew'>Cast/Crew: {crew} </div>
 
-            <button onClick={()=>setShowTrailer(!showTrailer)}> Click for Trailer </button>
+            <button onClick={ ()=>setShowTrailer(!showTrailer) }> Click for Trailer </button>
 
             {
               showTrailer && (
-                <iframe src={trailerUrl.videoUrl}> </iframe>
+                <iframe src={`https://www.youtube.com/embed/${trailerUrl.videoId}`} > </iframe>
               )
             }
 
