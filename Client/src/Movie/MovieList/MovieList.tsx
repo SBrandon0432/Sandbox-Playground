@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "./MovieListS.scss";
+import MovieTrailers from '../MovieTrailers/MovieTrailers'
+
 
 interface IProps {
   crew?: string;
@@ -14,28 +16,14 @@ interface IProps {
   year?: string;
 }
 
-
-interface IMovie {
-  crew?: string;
-  fullTitle?: string;
-  id?: string;
-  imDbRating?: string;
-  imDbRatingCount?: string;
-  image?: string;
-  rank?: string;
-  rankUpDown?: string;
-  title?: string;
-  year?: string;
-}
-
-
 interface Imovie {
   movie: IProps;
-  setHandler?: React.Dispatch<React.SetStateAction<number | undefined>>;
   index?: number;
 }
 
 const MovieList: React.FunctionComponent<Imovie>= ({movie, index}: Imovie) =>{
+  const [displayTrailer, setDisplayTrailer] = useState<boolean>(false);
+
 
   const {
     crew,
@@ -49,30 +37,32 @@ const MovieList: React.FunctionComponent<Imovie>= ({movie, index}: Imovie) =>{
     year
   } = movie
 
-//  console.log(movie, 'movie list');
-
   return (
-       <div className='movie-main' style={{display: "flex" }}>
-          <h3 className='movie-title'> {title} </h3>
-          <img src={image} width='120rem' height='auto'/>
+       <div className='movie-main'>
+         <div className='movie-title-picture-container'>
+            <h3 className='movie-title'> {title} </h3>
+            <img src={image} width='120rem' height='auto'/>
+         </div>
+
           <div className='movie-basic-info'>
             <div className="movie-rating">imDB rating: {imDbRating} </div>
             <div className='movie-rank'>imDB Rank: {rank} </div>
             <div className='movie-year'>Year Released: {year} </div>
             <div className='movie-crew'>Cast/Crew: {crew} </div>
           </div>
-
-          {/* <button onClick={ ()=>{
-            setSelectedMovieTrailer(id);
-            setShowTrailer(!showTrailer)
-
-          }}> Click for Trailer </button>
+        <div>
+          <button onClick={(e)=> {
+            if(!displayTrailer){setDisplayTrailer(true)}
+            else {setDisplayTrailer(false)}
+          }}
+          >Display Trailer</button>
 
           {
-            showTrailer && (
-              <iframe src={`https://www.youtube.com/embed/${trailerUrl.videoId}`}> </iframe>
+            displayTrailer && (
+              <MovieTrailers id={id}/>
             )
-          } */}
+          }
+        </div>
     </div>
   )
 
