@@ -82,9 +82,6 @@ const SandBox: React.FC = () => {
     year
   } = selectedMovie>=0 ? movies[selectedMovie]: {} as IMovie;
 
-
-  console.log(trailerUrl.videoId)
-
   return (
 
     <div className='MovieApp' style={{ display: "flex" }}>
@@ -94,12 +91,11 @@ const SandBox: React.FC = () => {
             return < MovieList
             movie={item}
             key={index}
-            index={index}
-            setHandler = {setSelectedMovie} />
+            index={index} />
           })
         }
       </div>
-      {
+      {/* {
          selectedMovie >= 0 && (
 
           <div className='moreInfo' style={{display: "flex", flexDirection: "column" }}>
@@ -125,7 +121,7 @@ const SandBox: React.FC = () => {
 
           </div>
         )
-      }
+      } */}
     </div>
   )
 
